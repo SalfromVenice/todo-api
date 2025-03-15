@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     # root "posts#index"
 
     # Rotte per tasks
-    get "/tasks", to: "task#index"
+    get "/tasks", to: "tasks#index"
     post "/tasks", to: "tasks#create"
+    put "/tasks", to: "tasks#update"
     delete "/tasks/:id", to: "tasks#destroy"
 
     # Rotte per autenticazione

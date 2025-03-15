@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
     include Authenticatable # Protegge le API con JWT.
 
-    before_action :set_task, only: [ :destroy ]
+    before_action :set_task, only: [ :update, :destroy ]
 
     # GET /tasks
     def index
@@ -16,6 +16,15 @@ class TasksController < ApplicationController
             render json: @task
         else
             render json: { errors: task.errors.full_messages }, status: :unprocessable_entity
+        end
+    end
+
+    # PUT /tasks/:id
+    def update
+        if @task.update(task_params)
+            render json: @task
+        else
+            render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
